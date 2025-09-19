@@ -2,15 +2,15 @@ from configparser import ConfigParser
 
 import pygame
 
-from Asteroid import Asteroid
-from AsteroidField import AsteroidField
-from Player import Player
-from Shot import Shot
+from src.Asteroid import Asteroid
+from src.AsteroidField import AsteroidField
+from src.Player import Player
+from src.Shot import Shot
 
 
 def main():
     constants = ConfigParser()
-    constants.read("constants.ini")
+    constants.read("res/constants.ini")
 
     width = constants.getint("SCREEN", "WIDTH")
     height = constants.getint("SCREEN", "HEIGHT")

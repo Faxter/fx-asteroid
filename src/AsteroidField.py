@@ -3,12 +3,12 @@ from configparser import ConfigParser
 
 import pygame
 
-from Asteroid import Asteroid
+from src.Asteroid import Asteroid
 
 
 class AsteroidField(pygame.sprite.Sprite):
     constants = ConfigParser()
-    constants.read("constants.ini")
+    constants.read("res/constants.ini")
     SCREEN_HEIGHT = constants.getint("SCREEN", "HEIGHT")
     SCREEN_WIDTH = constants.getint("SCREEN", "WIDTH")
     MAX_RADIUS = constants.getint("ASTEROID", "MAX_RADIUS")

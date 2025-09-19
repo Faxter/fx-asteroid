@@ -3,13 +3,13 @@ from configparser import ConfigParser
 
 import pygame
 
-from CircleShape import CircleShape
+from src.CircleShape import CircleShape
 
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         self.__constants = ConfigParser()
-        self.__constants.read("constants.ini")
+        self.__constants.read("res/constants.ini")
         super().__init__(x, y, radius)
 
     def draw(self, screen):

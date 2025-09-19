@@ -2,14 +2,14 @@ from configparser import ConfigParser
 
 import pygame
 
-from CircleShape import CircleShape
-from Shot import Shot
+from src.CircleShape import CircleShape
+from src.Shot import Shot
 
 
 class Player(CircleShape):
     def __init__(self, x, y):
         self.__constants = ConfigParser()
-        self.__constants.read("constants.ini")
+        self.__constants.read("res/constants.ini")
         super().__init__(x, y, self.__constants.getint("PLAYER", "RADIUS"))
         self.rotation = 180
         self.shot_timer = 0

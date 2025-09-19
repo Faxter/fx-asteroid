@@ -1,4 +1,3 @@
-import sys
 from configparser import ConfigParser
 
 import pygame
@@ -43,4 +42,4 @@ class Player(CircleShape):
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.move(-delta_time)
         if keys[pygame.K_ESCAPE]:
-            sys.exit(0)
+            pygame.event.post(pygame.event.Event(pygame.QUIT))

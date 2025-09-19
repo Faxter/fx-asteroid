@@ -3,6 +3,7 @@ from configparser import ConfigParser
 import pygame
 
 from CircleShape import CircleShape
+from Shot import Shot
 
 
 class Player(CircleShape):
@@ -31,6 +32,12 @@ class Player(CircleShape):
         player_direction = unit_vector.rotate(self.rotation)
         self.position += player_direction * delta_time * self.__constants.getint("PLAYER", "MOVE_SPEED")
 
+    def shoot(self):
+        shot = Shot(self.position.x, self.position.y)
+        unit_vector = pygame.Vector2(0, 1)
+        shot_direction = unit_vector.rotate(self.rotation)
+        shot.velocity = shot_direction * self.__constants.getint("PLAYER", "SHOOT_SPEED")
+
     def update(self, delta_time):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
@@ -41,5 +48,7 @@ class Player(CircleShape):
             self.move(delta_time)
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.move(-delta_time)
+        if keys[pygame.K_SPACE]:
+            self.shoot()
         if keys[pygame.K_ESCAPE]:
             pygame.event.post(pygame.event.Event(pygame.QUIT))

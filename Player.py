@@ -11,7 +11,7 @@ class Player(CircleShape):
         self.__constants = ConfigParser()
         self.__constants.read("constants.ini")
         super().__init__(x, y, self.__constants.getint("PLAYER", "RADIUS"))
-        self.rotation = 0
+        self.rotation = 180
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)

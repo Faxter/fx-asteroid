@@ -2,6 +2,8 @@ from configparser import ConfigParser
 
 import pygame
 
+from Player import Player
+
 
 def main():
     constants = ConfigParser()
@@ -18,12 +20,14 @@ def main():
     screen = pygame.display.set_mode((width, height))
     clock = pygame.time.Clock()
     delta_time = 0
+    player = Player(width // 2, height // 2)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
         delta_time = clock.tick(constants.getint("PERFORMANCE", "FPS"))
 

@@ -27,9 +27,10 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        player.update(delta_time)
         player.draw(screen)
         pygame.display.flip()
-        delta_time = clock.tick(constants.getint("PERFORMANCE", "FPS"))
+        delta_time = clock.tick(constants.getint("PERFORMANCE", "FPS")) / 1000
 
 
 if __name__ == "__main__":

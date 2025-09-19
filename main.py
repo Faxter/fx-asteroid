@@ -7,8 +7,8 @@ def main():
     constants = ConfigParser()
     constants.read("constants.ini")
 
-    width = int(constants.get("SCREEN", "WIDTH"))
-    height = int(constants.get("SCREEN", "HEIGHT"))
+    width = constants.getint("SCREEN", "WIDTH")
+    height = constants.getint("SCREEN", "HEIGHT")
 
     print("Starting Asteroids!")
     print(f"Screen width: {width}")
@@ -16,6 +16,8 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode((width, height))
+    clock = pygame.time.Clock()
+    delta_time = 0
 
     while True:
         for event in pygame.event.get():
@@ -23,6 +25,7 @@ def main():
                 return
         screen.fill("black")
         pygame.display.flip()
+        delta_time = clock.tick(constants.getint("PERFORMANCE", "FPS"))
 
 
 if __name__ == "__main__":

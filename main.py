@@ -20,15 +20,19 @@ def main():
     screen = pygame.display.set_mode((width, height))
     clock = pygame.time.Clock()
     delta_time = 0
-    player = Player(width // 2, height // 2)
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    Player.containers = (updatables, drawables)
+    Player(width // 2, height // 2)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
-        player.update(delta_time)
-        player.draw(screen)
+        updatables.update(delta_time)
+        for d in drawables:
+            d.draw(screen)
         pygame.display.flip()
         delta_time = clock.tick(constants.getint("PERFORMANCE", "FPS")) / 1000
 

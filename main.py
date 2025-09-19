@@ -2,6 +2,8 @@ from configparser import ConfigParser
 
 import pygame
 
+from Asteroid import Asteroid
+from AsteroidField import AsteroidField
 from Player import Player
 
 
@@ -13,8 +15,6 @@ def main():
     height = constants.getint("SCREEN", "HEIGHT")
 
     print("Starting Asteroids!")
-    print(f"Screen width: {width}")
-    print(f"Screen height: {height}")
 
     pygame.init()
     screen = pygame.display.set_mode((width, height))
@@ -22,8 +22,15 @@ def main():
     delta_time = 0
     updatables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
     Player.containers = (updatables, drawables)
     Player(width // 2, height // 2)
+
+    Asteroid.containers = (asteroids, updatables, drawables)
+
+    AsteroidField.containers = updatables
+    AsteroidField()
 
     while True:
         for event in pygame.event.get():

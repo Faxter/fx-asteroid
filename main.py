@@ -41,14 +41,14 @@ def main():
                 return
         screen.fill("black")
         updatables.update(delta_time)
-        for a in asteroids:
-            if a.collides(player):
+        for asteroid in asteroids:
+            if asteroid.collides(player):
                 print("Game over!")
                 return
-            for b in shots:
-                if a.collides(b):
-                    a.kill()
-                    b.kill()
+            for bullet in shots:
+                if asteroid.collides(bullet):
+                    asteroid.split()
+                    bullet.kill()
         for d in drawables:
             d.draw(screen)
         pygame.display.flip()

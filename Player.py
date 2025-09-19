@@ -1,3 +1,4 @@
+import sys
 from configparser import ConfigParser
 
 import pygame
@@ -32,3 +33,5 @@ class Player(CircleShape):
             self.rotate(delta_time)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rotate(-delta_time)
+        if keys[pygame.K_ESCAPE]:
+            sys.exit(0)
